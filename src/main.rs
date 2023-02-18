@@ -1,6 +1,17 @@
 use std::fs;
 
 fn grabids() -> Vec<(String, String) {
+    let mut dir_list = Vec::new();
+    if let Ok(entries) = fs::read_dir("data/mods/") {
+        for entry in entries {
+            if let Ok(entry) = entry {
+                if let Some(name) = entry.file_name().to_str() {
+                    dir_list.push(name.to_string());
+                }
+            }
+        }
+    }
+    dir_list
     
 }
 
