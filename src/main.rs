@@ -1,8 +1,8 @@
 use std::fs;
 
-fn grabids() -> Vec<(String, String) {
+fn grabids(modsdir: String) -> Vec<(String, String)> {
     let mut dir_list = Vec::new();
-    if let Ok(entries) = fs::read_dir("data/mods/") {
+    if let Ok(entries) = fs::read_dir(modsdir) {
         for entry in entries {
             if let Ok(entry) = entry {
                 if let Some(name) = entry.file_name().to_str() {
@@ -12,13 +12,14 @@ fn grabids() -> Vec<(String, String) {
         }
     }
     dir_list
-    
+
 }
 
 
 fn main() {
     // Enter data folder
 
+    let idlist = grabids("data/mods");
     // Iterate through all mods in mod directory
         // Mod dir structure
             // mods\<workshopid#>\mods\<modname>\mod.info
